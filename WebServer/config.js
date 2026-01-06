@@ -1,6 +1,9 @@
+const path = require("path");
+
 module.exports = {
-  dataPath: "/home/pi/OrboxPFE/data/",
-  publicPath: "/home/pi/OrboxPFE/WebServer/public/",
-  buildPath: "/home/pi/OrboxPFE/ImgProcML/build/",
+  dataPath: path.join(__dirname, "../data/"),
+  publicPath: path.join(__dirname, "../WebServer/public/"),
+  buildPath: path.join(__dirname, "../ImgProcML/build/"),
   port: 3000
 };
+

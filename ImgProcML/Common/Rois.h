@@ -5,8 +5,8 @@
 #ifndef PROJECT_ROIS_H
 #define PROJECT_ROIS_H
 
-#include "/home/pi/OrboxPFE/opencv/include/opencv2/opencv.hpp"
-#include "/home/pi/OrboxPFE/opencv/modules/core/include/opencv2/core.hpp"
+#include <opencv2/opencv.hpp>
+#include <opencv2/core.hpp>
 
 class Rois {
 private:
