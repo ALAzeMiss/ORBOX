@@ -8,6 +8,9 @@ find_program(CMAKE_CXX_COMPILER NAMES $ENV{CXX} g++ PATHS ENV PATH NO_DEFAULT_PA
 project(PredictUtil)
 
 find_package(OpenCV REQUIRED)
+if(OpenCV_VERSION VERSION_LESS "4.0")
+    message(FATAL_ERROR "OpenCV >= 4.0 required")
+endif()
 add_subdirectory(../Common shared_lib)
 
 include_directories(${OpenCV_INCLUDE_DIRS})

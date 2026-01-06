@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.2)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y")
 
 find_package(OpenCV REQUIRED)
+if(OpenCV_VERSION VERSION_LESS "4.0")
+    message(FATAL_ERROR "OpenCV >= 4.0 required")
+endif()
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(/usr/local/lib) 
