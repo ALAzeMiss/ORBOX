@@ -14,7 +14,7 @@
 #include <mutex>
 #include <thread>
 #include <chrono>
-#include <pigpio.h>
+#include <pigpiod_if2.h>
 #include <unistd.h>
 
 constexpr unsigned int PWM_PIN = 18;
