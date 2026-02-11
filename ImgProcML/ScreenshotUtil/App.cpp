@@ -4,23 +4,24 @@ using namespace cv;
 using namespace std;
 
 void App::initLight() {
-    cerr << "DEBUG : initLight()" << endl;
-    int status;
-    if((status = gpioInitialise()) < 0){
-	 cerr << "ERR : failed to initialise pigpio, error code : " << status << endl;
+    // Connexion au daemon pigpiod
+    int pi = pigpio_start(nullptr, nullptr);
+    if (pi < 0) {
+        std::cerr << "Erreur: impossible de se connecter à pigpiod" << std::endl;
+        return 1;
     }
-    gpioSetMode(PWM_PIN, PI_OUTPUT);
-    gpioSetPWMfrequency(PWM_PIN, 100);
+
+    set_mode(pi, LED_PIN, PI_OUTPUT);
 }
 
 void App::turnLightOff() {
-    cerr << "DEBUG : turnLightOff()" << endl;
-    gpioPWM(PWM_PIN, 0);
+    std::cout << "LED OFF" << std::endl;
+    gpio_write(pi, LED_PIN, 0);
 }
 
 void App::turnLightOn() {
-    cerr << "DEBUG : turnLightOn()" << endl;
-    gpioPWM(PWM_PIN, 128);
+    std::cout << "LED ON" << std::endl;
+    gpio_write(pi, LED_PIN, 1);
 }
 
 void App::initCamera() {
@@ -135,6 +136,7 @@ void App::undistord(Mat &src, Mat &dst) {
 
 void App::close(){
     cerr << "DEBUG : close()" << endl;
+    pigpio_stop(pi);
     videoCapture.release();
     gpioTerminate();
 }
